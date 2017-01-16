@@ -78,7 +78,6 @@ namespace FastFind
             // Have to include the time for parsing and creating the regular
             // expressions.
             timer.Start();
-
             Boolean parsed = Options.Parse(args);
 
             totalMatches = 0;
@@ -307,7 +306,7 @@ namespace FastFind
                             String subDirectory = Path.Combine(directory, w32FindData.cFileName);
                             if (Options.IncludeDirectories)
                             {
-                                if (IsNameMatch(subDirectory))
+                                if (IsNameMatch(w32FindData.cFileName))
                                 {
                                     Interlocked.Increment(ref totalMatches);
                                     QueueConsoleWriteLine(subDirectory);
@@ -332,14 +331,7 @@ namespace FastFind
                             }
                             fullFile += w32FindData.cFileName;
 
-                            String matchName = fullFile;
-
-                            if (false == Options.IncludeDirectories)
-                            {
-                                matchName = w32FindData.cFileName;
-                            }
-
-                            if (IsNameMatch(matchName))
+                            if (IsNameMatch(w32FindData.cFileName))
                             {
                                 Interlocked.Increment(ref totalMatches);
                                 Interlocked.Add(ref totalMatchesSize, fileSize);
