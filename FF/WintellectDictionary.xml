@@ -6,10 +6,10 @@
     <Recognized>
       <Word>Wintellect</Word>
       <Word>ff</Word>
-      <Word>includedir</Word>
+      <Word>dir</Word>
       <Word>wintellect</Word>
       <Word>Arg</Word>
-      <Word>nostats</Word>
+      <Word>includestats</Word>
       <Word>ms</Word>
     </Recognized>
     <Deprecated>

@@ -102,7 +102,7 @@ namespace FastFind
 
                 timer.Stop();
 
-                if (false == Options.NoStatistics)
+                if (Options.IncludeStatistics)
                 {
                     Console.WriteLine(Constants.TotalTimeFmt, timer.ElapsedMilliseconds.ToString("N0", CultureInfo.CurrentCulture));
                     Console.WriteLine(Constants.TotalFilesFmt, totalFiles.ToString("N0", CultureInfo.CurrentCulture));
@@ -304,19 +304,16 @@ namespace FastFind
                             Interlocked.Increment(ref totalDirectories);
 
                             String subDirectory = Path.Combine(directory, w32FindData.cFileName);
-                            if (Options.IncludeDirectories)
+                            if (IsNameMatch(w32FindData.cFileName))
                             {
-                                if (IsNameMatch(w32FindData.cFileName))
-                                {
-                                    Interlocked.Increment(ref totalMatches);
-                                    QueueConsoleWriteLine(subDirectory);
-                                }
+                                Interlocked.Increment(ref totalMatches);
+                                QueueConsoleWriteLine(subDirectory);
                             }
 
                             // Recurse our way to happiness....
                             Task.Factory.StartNew(() => RecurseFiles(subDirectory), TaskCreationOptions.AttachedToParent);
                         }
-                        else
+                        else if (!Options.DirectoriesOnly)
                         {
                             // It's a file so look at it.
                             Interlocked.Increment(ref totalFiles);

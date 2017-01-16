@@ -43,24 +43,24 @@ namespace FastFind
         private const String RegExFlagShort = "re";
 
         /// <summary>
-        /// The only files flag.
+        /// The directory only flag.
         /// </summary>
-        private const String IncludeDirectoryName = "includedir";
+        private const String DirectoryOnly = "dir";
 
         /// <summary>
-        /// The short only files flag short.
+        /// The directories only files flag short.
         /// </summary>
-        private const String IncludeDirectoryNameShort = "i";
+        private const String DirectoryOnlyShort = "d";
 
         /// <summary>
-        /// The no statistics flag.
+        /// The incldue statistics flag.
         /// </summary>
-        private const String NoStats = "nostats";
+        private const String IncludeStats = "includeStats";
 
         /// <summary>
-        /// The short no stats flag.
+        /// The short include stats flag.
         /// </summary>
-        private const String NoStatsShort = "ns";
+        private const String IncludeStatsShort = "is";
 
         /// <summary>
         /// The help flag.
@@ -92,14 +92,14 @@ namespace FastFind
         /// </summary>
         public FastFindArgumentParser()
             : base(
-                new[] { RegExFlag, RegExFlagShort, IncludeDirectoryName, IncludeDirectoryNameShort, NoStats, NoStatsShort, HelpFlagShort },
+                new[] { RegExFlag, RegExFlagShort, DirectoryOnly, DirectoryOnlyShort, IncludeStats, IncludeStatsShort, HelpFlagShort },
                 new[] { PathFlag, PathFlagShort },
                 false)
         {
             this.Path = String.Empty;
             this.useRegEx = false;
-            this.IncludeDirectories = false;
-            this.NoStatistics = false;
+            this.DirectoriesOnly = false;
+            this.IncludeStatistics = false;
             this.Patterns = new List<Regex>();
             this.rawPatterns = new List<String>();
         }
@@ -113,13 +113,13 @@ namespace FastFind
         /// Gets a value indicating whether the user only wants to include the
         /// directory name as part of the search.
         /// </summary>
-        public Boolean IncludeDirectories { get; private set; }
+        public Boolean DirectoriesOnly { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the user wants to see the final
         /// search stats.
         /// </summary>
-        public Boolean NoStatistics { get; private set; }
+        public Boolean IncludeStatistics { get; private set; }
 
         /// <summary>
         /// Gets the patterns to search for.
@@ -176,14 +176,14 @@ namespace FastFind
                     this.useRegEx = true;
                     break;
 
-                case IncludeDirectoryName:
-                case IncludeDirectoryNameShort:
-                    this.IncludeDirectories = true;
+                case DirectoryOnly:
+                case DirectoryOnlyShort:
+                    this.DirectoriesOnly = true;
                     break;
 
-                case NoStats:
-                case NoStatsShort:
-                    this.NoStatistics = true;
+                case IncludeStats:
+                case IncludeStatsShort:
+                    this.IncludeStatistics = true;
                     break;
 
                 case HelpFlag:

@@ -192,13 +192,13 @@ namespace FastFind {
         ///Find file and directory names fast!
         ///
         ///Usage: 
-        ///FF [-regex] [-includedir] [-nostats] [-path &lt;directory&gt;] pattern*
+        ///FF [-regex] [-dir] [-includestats] [-path &lt;directory&gt;] pattern*
         ///
         ///-regex            - Treat the patterns as regular expressions. The default 
         ///                    follows DOS wildcard usage. Make sure to use regex values 
         ///                    in patterns with this flag. (short: -re)
-        ///-includedir       - Include directory names when searching for matches. The 
-        ///                    default is on [rest of string was truncated]&quot;;.
+        ///-dir              - Include only directory names when searching for matches. (short: -d)
+        ///-includestats     - Sho [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string UsageString {
             get {
